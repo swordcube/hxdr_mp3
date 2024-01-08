@@ -2,6 +2,8 @@
 
 Haxe/hxcpp @:native bindings for [DR MP3](https://github.com/mackron/dr_libs/blob/master/dr_mp3.h).
 
+These bindings came from [Blueprint](https://github.com/BlueprintFramework-Team/Blueprint), Go check it out!
+
 ---
 
 This library only works with the Haxe `cpp` target via `hxcpp`.
