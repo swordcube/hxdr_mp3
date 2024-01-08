@@ -1,0 +1,14 @@
+{
+    "name": "hxdr_mp3",
+    "url" : "https://github.com/swordcube/hxdr_mp3",
+    "license": "MIT",
+    "tags": ["haxe", "mpeg3", "drmp3", "dr-mp3", "dr_mp3", "dr", "mp3", "hxdr_mp3", "cpp", "binds", "bindings", "native"],
+    "description": "A haxelib containing hxcpp bindings for dr_mp3.",
+    "version": "0.1.0",
+    "classPath": "src/",
+    "releasenote": "Initial release.",
+    "contributors": ["swordcube"],
+    "dependencies": {
+        "hxcpp": ""
+    }
+}
