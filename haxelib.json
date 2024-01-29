@@ -4,9 +4,9 @@
     "license": "MIT",
     "tags": ["haxe", "mpeg3", "drmp3", "dr-mp3", "dr_mp3", "dr", "mp3", "hxdr_mp3", "cpp", "binds", "bindings", "native"],
     "description": "A haxelib containing hxcpp bindings for dr_mp3.",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "classPath": "src/",
-    "releasenote": "Initial release.",
+    "releasenote": "Rename DrMP3 class to MP3.",
     "contributors": ["swordcube"],
     "dependencies": {
         "hxcpp": ""
