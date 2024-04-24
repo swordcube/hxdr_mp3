@@ -40,6 +40,8 @@ extern class DrMP3Config {
     var sampleRate:cpp.UInt32;
 }
 
+@:include("vendor/include/dr_mp3.h")
+@:buildXml("<include name=\"${haxelib:hxdr_mp3}/include.xml\"/>")
 @:native("drmp3_uint64")
 @:scalar @:coreType @:notNull
 extern abstract DrMP3UInt64 from Int to Int {}
