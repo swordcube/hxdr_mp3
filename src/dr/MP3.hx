@@ -42,10 +42,6 @@ extern class DrMP3Config {
 
 @:include("vendor/include/dr_mp3.h")
 @:buildXml("<include name=\"${haxelib:hxdr_mp3}/include.xml\"/>")
-#if mac
-@:native("unsigned long")
-#else
 @:native("drmp3_uint64")
-#end
 @:scalar @:coreType @:notNull
 extern abstract DrMP3UInt64 from Int to Int {}
