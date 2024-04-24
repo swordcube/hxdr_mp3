@@ -40,10 +40,6 @@ extern class DrMP3Config {
     var sampleRate:cpp.UInt32;
 }
 
-#if mac
-@:native("long unsigned int")
-#else
-@:native("long long unsigned int")
-#end
+@:native("drmp3_uint64")
 @:scalar @:coreType @:notNull
 extern abstract DrMP3UInt64 from Int to Int {}
