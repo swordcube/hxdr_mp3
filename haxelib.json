@@ -4,9 +4,9 @@
     "license": "MIT",
     "tags": ["haxe", "mpeg3", "drmp3", "dr-mp3", "dr_mp3", "dr", "mp3", "hxdr_mp3", "cpp", "binds", "bindings", "native"],
     "description": "A haxelib containing hxcpp bindings for dr_mp3.",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "classPath": "src/",
-    "releasenote": "Return RawPointer instead of Star",
+    "releasenote": "Fixed macOS compiler errors.",
     "contributors": ["swordcube"],
     "dependencies": {
         "hxcpp": ""
