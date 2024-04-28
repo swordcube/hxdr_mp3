@@ -411,6 +411,7 @@ The buffer should contain the contents of the entire MP3 file.
 */
 DRMP3_API drmp3_bool32 drmp3_init_memory(drmp3* pMP3, const void* pData, size_t dataSize, const drmp3_allocation_callbacks* pAllocationCallbacks);
 
+#ifndef DR_MP3_NO_STDIO
 /*
 Initializes an MP3 decoder from a file.
 
@@ -420,6 +421,7 @@ any given time.
 */
 DRMP3_API drmp3_bool32 drmp3_init_file(drmp3* pMP3, const char* pFilePath, const drmp3_allocation_callbacks* pAllocationCallbacks);
 DRMP3_API drmp3_bool32 drmp3_init_file_w(drmp3* pMP3, const wchar_t* pFilePath, const drmp3_allocation_callbacks* pAllocationCallbacks);
+#endif
 
 /*
 Uninitializes an MP3 decoder.
@@ -502,8 +504,10 @@ DRMP3_API drmp3_int16* drmp3_open_and_read_pcm_frames_s16(drmp3_read_proc onRead
 DRMP3_API float* drmp3_open_memory_and_read_pcm_frames_f32(const void* pData, size_t dataSize, drmp3_config* pConfig, drmp3_uint64* pTotalFrameCount, const drmp3_allocation_callbacks* pAllocationCallbacks);
 DRMP3_API drmp3_int16* drmp3_open_memory_and_read_pcm_frames_s16(const void* pData, size_t dataSize, drmp3_config* pConfig, drmp3_uint64* pTotalFrameCount, const drmp3_allocation_callbacks* pAllocationCallbacks);
 
+#ifndef DR_MP3_NO_STDIO
 DRMP3_API float* drmp3_open_file_and_read_pcm_frames_f32(const char* filePath, drmp3_config* pConfig, drmp3_uint64* pTotalFrameCount, const drmp3_allocation_callbacks* pAllocationCallbacks);
 DRMP3_API drmp3_int16* drmp3_open_file_and_read_pcm_frames_s16(const char* filePath, drmp3_config* pConfig, drmp3_uint64* pTotalFrameCount, const drmp3_allocation_callbacks* pAllocationCallbacks);
+#endif
 
 /*
 Allocates a block of memory on the heap.
@@ -2941,6 +2945,8 @@ DRMP3_API drmp3_bool32 drmp3_init_memory(drmp3* pMP3, const void* pData, size_t 
     return drmp3_init_internal(pMP3, drmp3__on_read_memory, drmp3__on_seek_memory, pMP3, pAllocationCallbacks);
 }
 
+
+#ifndef DR_MP3_NO_STDIO
 #include <stdio.h>
 #include <wchar.h>      /* For wcslen(), wcsrtombs() */
 
@@ -3554,6 +3560,7 @@ DRMP3_API drmp3_bool32 drmp3_init_file_w(drmp3* pMP3, const wchar_t* pFilePath, 
 
     return DRMP3_TRUE;
 }
+#endif
 
 DRMP3_API void drmp3_uninit(drmp3* pMP3)
 {
@@ -3561,6 +3568,7 @@ DRMP3_API void drmp3_uninit(drmp3* pMP3)
         return;
     }
     
+#ifndef DR_MP3_NO_STDIO
     if (pMP3->onRead == drmp3__on_read_stdio) {
         FILE* pFile = (FILE*)pMP3->pUserData;
         if (pFile != NULL) {
@@ -3568,6 +3576,7 @@ DRMP3_API void drmp3_uninit(drmp3* pMP3)
             pMP3->pUserData = NULL; /* Make sure the file handle is cleared to NULL to we don't attempt to close it a second time. */
         }
     }
+#endif
 
     drmp3__free_from_callbacks(pMP3->pData, &pMP3->allocationCallbacks);
 }
@@ -4362,6 +4371,8 @@ DRMP3_API drmp3_int16* drmp3_open_memory_and_read_pcm_frames_s16(const void* pDa
     return drmp3__full_read_and_close_s16(&mp3, pConfig, pTotalFrameCount);
 }
 
+
+#ifndef DR_MP3_NO_STDIO
 DRMP3_API float* drmp3_open_file_and_read_pcm_frames_f32(const char* filePath, drmp3_config* pConfig, drmp3_uint64* pTotalFrameCount, const drmp3_allocation_callbacks* pAllocationCallbacks)
 {
     drmp3 mp3;
@@ -4381,6 +4392,7 @@ DRMP3_API drmp3_int16* drmp3_open_file_and_read_pcm_frames_s16(const char* fileP
 
     return drmp3__full_read_and_close_s16(&mp3, pConfig, pTotalFrameCount);
 }
+#endif
 
 DRMP3_API void* drmp3_malloc(size_t sz, const drmp3_allocation_callbacks* pAllocationCallbacks)
 {
